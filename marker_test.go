@@ -49,10 +49,11 @@ func TestMaker(t *testing.T) {
 	}
 
 	ctx := NewContext()
+	ctx.tileProvider = NewTileProviderXingzheInternal()
 	ctx.SetSize(640*2, 280*2)
 
 	ctx.AddObject(NewPath(s2LineString,
-		color.RGBA{17, 174, 250, 0xff}, 8.0),
+		color.RGBA{R: 17, G: 174, B: 250, A: 0xff}, 8.0),
 	)
 	offsetX, offsetY := 16.0, 16.0
 	ctx.AddObject(

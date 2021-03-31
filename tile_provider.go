@@ -25,7 +25,7 @@ func (t *TileProvider) getURL(shard string, zoom, x, y int) string {
 func NewTileProviderOpenStreetMaps() *TileProvider {
 	t := new(TileProvider)
 	t.Name = "osm"
-	t.Attribution = "Maps and Data (c) openstreetmap.org and contributors, ODbL"
+	//t.Attribution = "Maps and Data (c) openstreetmap.org and contributors, ODbL"
 	t.TileSize = 256
 	t.URLPattern = "http://%[1]s.tile.openstreetmap.org/%[2]d/%[3]d/%[4]d.png"
 	t.Shards = []string{"a", "b", "c"}
@@ -143,6 +143,15 @@ func NewTileProviderArcgisWorldImagery() *TileProvider {
 	return t
 }
 
+func NewTileProviderXingzheInternal() *TileProvider {
+	t := new(TileProvider)
+	t.Name = "xingzhe"
+	t.TileSize = 256
+	t.URLPattern = "http://192.168.0.33:%[1]s/klokantech-terrain/%[2]d/%[3]d/%[4]d.png"
+	t.Shards = []string{"8081", "8082", "8080", "8083", "8084"}
+	return t
+}
+
 // GetTileProviders returns a map of all available TileProviders
 func GetTileProviders() map[string]*TileProvider {
 	m := make(map[string]*TileProvider)
@@ -161,6 +170,7 @@ func GetTileProviders() map[string]*TileProvider {
 		NewTileProviderCartoLight(),
 		NewTileProviderCartoDark(),
 		NewTileProviderArcgisWorldImagery(),
+		NewTileProviderXingzheInternal(),
 	}
 
 	for _, tp := range list {
