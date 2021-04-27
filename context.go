@@ -624,7 +624,7 @@ func (m *Context) renderLayer(gc *gg.Context, zoom int, trans *Transformer, tile
 		t.SetUserAgent(m.userAgent)
 	}
 
-	wp := workerpool.New(6)
+	wp := workerpool.New(20)
 	var tasks []Task
 	var tileImages []TileImage
 	// get tasks
@@ -674,7 +674,6 @@ func (m *Context) renderLayer(gc *gg.Context, zoom int, trans *Transformer, tile
 		})
 	}
 	wp.StopWait()
-	log.Println("total tiles", len(tileImages))
 	for idx := range tileImages {
 		gc.DrawImage(tileImages[idx].image, tileImages[idx].x*tileSize, tileImages[idx].y*tileSize)
 	}
